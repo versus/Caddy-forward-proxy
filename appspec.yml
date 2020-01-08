@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /proxy
+hooks:
+  BeforeInstall:
+    - location: ./install_dependencies.sh
+      runas: root
+  ApplicationStart:
+    - location: ./start.sh
+      runas: root
+  ApplicationStop:
+    - location: ./stop.sh
+      runas: root

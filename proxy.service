@@ -1,0 +1,19 @@
+[Unit]
+Description=Caddy Proxy service
+After=network-online.target
+Wants=network-online.target systemd-networkd-wait-online.service
+
+[Service]
+Type=simple
+Restart=on-abnormal
+RestartSec=1
+User=www-data
+Group=www-data
+ExecStart=/usr/local/bin/proxy -conf=/proxy/Caddyfile
+TimeoutSec=300
+KillMode=mixed
+KillSignal=SIGQUIT
+TimeoutStopSec=5s
+
+[Install]
+WantedBy=multi-user.target

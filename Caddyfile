@@ -1,0 +1,23 @@
+:80 {
+ status 200 /
+}
+:443 {
+log / stdout "{remote} - {user} [{when}] \"{method} {scheme}://{host}{uri} {proto}\" {status} {size}"
+errors stdout
+status 200 /ping
+status 200 /df911f0151f9ef021d410b4be5060972
+tls /etc/ssl/proxy.crt /etc/ssl/key.key
+
+
+geoip /proxy/GeoLite2-City.mmdb
+
+timeouts {
+        read  30s
+        header  10s
+        write 20s
+}
+
+forwardproxy {
+
+}
+}
